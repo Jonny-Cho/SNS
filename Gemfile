@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'sprockets', '~> 3.7.2'
+
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'materialize-sass', '~> 1.0.0.rc1'
 
