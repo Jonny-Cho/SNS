@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sns</title>
+    <title>SNS-rails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <div class="nav">
+        <a href="/" class="brand-logo left">SNS</a>
+        <%# <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> %>
+        <ul class="right">
+              <li><a href="/posts">Posts</a></li>
+              <% if user_signed_in? %>
+              <li>
+                <a class="nav-link" href="#"><%= current_user.name %></a>
+              </li>            
+              <li>
+                <%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class: "nav-link" %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to 'Sign in', new_user_session_path, method: 'get', class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to 'Sign up', new_user_registration_path, method: 'get', class: "nav-link" %>              
+              </li>          
+              <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>
